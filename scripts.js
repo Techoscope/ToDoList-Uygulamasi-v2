@@ -25,4 +25,13 @@ function addItem(){
   }
 }
 
-// When User click on the item in the list, the item will be removed/deleted.
+// Story 2 - When User click on the item in the list, the item will be removed/deleted.
+// Task 2.1 - Add onclick attribute to li element
+
+function removeItem(listItem) {
+  // const isConfirmed = confirm('Are you sure?')
+  // if (isConfirmed) {
+  //   listItem.remove();
+  // }
+  document.getElementById('todo_list').removeChild(listItem);
+}
