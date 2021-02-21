@@ -3,15 +3,22 @@
 // Task 1.2 - Get input value
 // Task 1.3 - Create and add the input value to ul list.
 
-function addItem(){
-  const inputValue = document.getElementById('todo_input').value;
-  
-  const listItem = document.createElement('li');
-  listItem.className = 'todo-list-item';
-  listItem.innerHTML = inputValue;
-  document.getElementById('todo_list').appendChild(listItem);
+// BugFix - Empty input when item inserted successfully
+// BugFix - Dont insert the task when input is empty
 
-  // console.log(listItem);
+function addItem(){
+  // Access input box as a node
+  let inputBox = document.getElementById('todo_input');
+  // Create li element for HTML
+  const listItem = document.createElement('li');
+  // Add a class to the li element
+  listItem.className = 'todo-list-item';
+  // Assign input box value to li element's innerHTML
+  listItem.innerHTML = inputBox.value;
+  // Insert newly created li element above to ul element.
+  document.getElementById('todo_list').appendChild(listItem);
+  // Empty input box value
+  inputBox.value = '';
 }
 
 // When User click on the item in the list, the item will be removed/deleted.
