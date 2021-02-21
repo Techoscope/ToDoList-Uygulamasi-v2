@@ -16,6 +16,10 @@ function addItem(){
     listItem.className = 'todo-list-item';
     // Assign input box value to li element's innerHTML
     listItem.innerHTML = inputBox.value;
+    // Add onclick event listener
+    listItem.onclick = function () {
+      removeItem(listItem);
+    }
     // Insert newly created li element above to ul element.
     document.getElementById('todo_list').appendChild(listItem);
     // Empty input box value
