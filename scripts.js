@@ -18,7 +18,7 @@ function addItem(){
     listItem.innerHTML = inputBox.value;
     // Add onclick event listener
     listItem.onclick = function () {
-      removeItem(listItem);
+      document.getElementById('todo_list').removeChild(listItem);
     }
     // Insert newly created li element above to ul element.
     document.getElementById('todo_list').appendChild(listItem);
@@ -31,11 +31,3 @@ function addItem(){
 
 // Story 2 - When User click on the item in the list, the item will be removed/deleted.
 // Task 2.1 - Add onclick attribute to li element
-
-function removeItem(listItem) {
-  // const isConfirmed = confirm('Are you sure?')
-  // if (isConfirmed) {
-  //   listItem.remove();
-  // }
-  document.getElementById('todo_list').removeChild(listItem);
-}
