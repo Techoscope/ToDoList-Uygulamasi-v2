@@ -6,7 +6,7 @@
 // BugFix - Empty input when item inserted successfully
 // BugFix - Dont insert the task when input is empty
 
-const todoList = ['Tidy your room', 'Have your breakfast', 'Hanogout with folks'];
+const todoList = localStorage.getItem('todoList').split(',');
 
 todoList.forEach((element) => {
   let todoList = document.getElementById('todo_list');
@@ -31,6 +31,9 @@ function addItem(){
     document.getElementById('todo_list').appendChild(listItem);
     // Empty input box value
     inputBox.value = '';
+    // Add new item to array
+    todoList.push(listItem.innerHTML);
+    localStorage.setItem('todoList', todoList)
   } else {
     alert('Input box cannot be empty')
   }
