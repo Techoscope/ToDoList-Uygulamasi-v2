@@ -6,6 +6,13 @@
 // BugFix - Empty input when item inserted successfully
 // BugFix - Dont insert the task when input is empty
 
+const todoList = ['Tidy your room', 'Have your breakfast', 'Hanogout with folks'];
+
+todoList.forEach((element) => {
+  let todoList = document.getElementById('todo_list');
+  todoList.innerHTML += `<li onclick="this.remove()">${element}</li>`
+})
+
 function addItem(){
   // Access input box as a node
   let inputBox = document.getElementById('todo_input');
