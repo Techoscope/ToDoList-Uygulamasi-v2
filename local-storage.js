@@ -14,10 +14,22 @@ function addItem(){
 // List all items
 function getItems() {
   const todoList =  document.getElementById('todo_list');
-  todoItems = localStorage.getItem('todoItems').split(',');
+
+  // if(localStorage.getItem('todoItems')) {
+  //   todoItems = localStorage.getItem('todoItems').split(',');
+  // } else {
+  //   todoItems = [];
+  // }
+  
+  todoItems = localStorage.getItem('todoItems') ? localStorage.getItem('todoItems').split(',') : [] ;
+
   todoList.innerHTML = '';
   todoItems.forEach( item => {
-    todoList.innerHTML += '<li onclick="removeItem(this)">' + item + '</li>';
+    // todoList.innerHTML += '<li onclick="removeItem(this)">' + item + '</li>';
+    const listItem = document.createElement('li');
+    listItem.innerHTML = item;
+    listItem.addEventListener('click', removeItem);
+    todoList.appendChild(listItem);
   })
 }
 
@@ -25,9 +37,9 @@ function getItems() {
 // Filtrelenmis item'lari bir degiskene assign et
 // Bu yeni array'i local storage'a gonder
 
-function removeItem(element) {
+function removeItem(e) {
   const filteredArray = todoItems.filter(item => {
-    return item !== element.innerHTML;
+    return item !== e.target.innerHTML;
   })
   localStorage.setItem('todoItems', filteredArray);
   getItems();
