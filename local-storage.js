@@ -8,21 +8,21 @@ function addItem(){
   todoItems.push(input.value);
   localStorage.setItem('todoItems', todoItems);
   input.value = '';
-  getItems();
+  getItems().then((resolvedValue)=>{listItems(resolvedValue)});
 }
 
 // List all items
 function getItems() {
+  return new Promise((resolve)=>{
+    setTimeout(() => {
+      todoItems = localStorage.getItem('todoItems') ? localStorage.getItem('todoItems').split(',') : [] ;
+      resolve(todoItems);
+    }, 1000);
+  })
+}
+
+function listItems(todoItems) {
   const todoList =  document.getElementById('todo_list');
-
-  // if(localStorage.getItem('todoItems')) {
-  //   todoItems = localStorage.getItem('todoItems').split(',');
-  // } else {
-  //   todoItems = [];
-  // }
-  
-  todoItems = localStorage.getItem('todoItems') ? localStorage.getItem('todoItems').split(',') : [] ;
-
   todoList.innerHTML = '';
   todoItems.forEach( item => {
     // todoList.innerHTML += '<li onclick="removeItem(this)">' + item + '</li>';
@@ -42,7 +42,9 @@ function removeItem(e) {
     return item !== e.target.innerHTML;
   })
   localStorage.setItem('todoItems', filteredArray);
-  getItems();
+  getItems().then((resolvedValue)=>{listItems(resolvedValue)});
 }
 
-getItems();
+getItems().then(resolvedValue => listItems(resolvedValue));
+
+
